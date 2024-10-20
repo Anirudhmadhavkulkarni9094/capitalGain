@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { SERVER } from '../Config/config';
 
 const ResetPassword = () => {
     const [password, setPassword] = useState('');
@@ -11,7 +12,7 @@ const ResetPassword = () => {
     const handleResetPassword = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`http://localhost:5000/api/auth/reset-password/${token}`, { password });
+            const response = await axios.post(`${SERVER}/api/auth/reset-password/${token}`, { password });
             setMessage(response.data.msg);
         } catch (err) {
             setMessage('Error resetting password');

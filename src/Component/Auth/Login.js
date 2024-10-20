@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from './AuthProvider'; // Adjust the path accordingly
+import { SERVER } from '../Config/config';
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true); // Toggle between Login and Register
@@ -20,7 +21,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+            const response = await axios.post(`${SERVER}/api/auth/login`, { email, password });
             const data = response.data;
 
             if (data?.token) {
@@ -46,7 +47,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
+            const response = await axios.post(`${SERVER}/api/auth/register`, { name, email, password });
             if (response.status === 201) {
                 setSuccess(true);
                 setIsLogin(true); // After registration, switch to login view

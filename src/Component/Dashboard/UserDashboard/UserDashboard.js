@@ -36,7 +36,7 @@ const UserDashboard = () => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            await axios.post('http://localhost:5000/api/withdrawals/withdraw', {
+            await axios.post(`${SERVER}/api/withdrawals/withdraw`, {
                 amount: withdrawalAmount,
             }, {
                 headers: {
@@ -77,7 +77,7 @@ const UserDashboard = () => {
         }
 
         try {
-            const res = await axios.post('http://localhost:5000/api/investments/invest', formData, {
+            const res = await axios.post(`${SERVER}/api/investments/invest`, formData, {
                 headers: {
                     'x-auth-token': localStorage.getItem("token"),
                     'Content-Type': 'multipart/form-data', // Use multipart form-data
